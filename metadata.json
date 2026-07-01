@@ -1,0 +1,19 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [
+      {
+        "Email": "",
+        "Name": "Vinicius"
+      }
+    ],
+    "Category": "Date and Time",
+    "Description": "Mini calendar with rounded corners and light, dark, or automatic theme.",
+    "Icon": "view-calendar",
+    "Id": "com.vinicius.minicalendar",
+    "License": "MIT",
+    "Name": "Mini Calendar",
+    "Version": "1.0.0"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

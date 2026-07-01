@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+  <group name="General">
+    <entry name="themeMode" type="String">
+      <default>auto</default>
+    </entry>
+    <entry name="themePreset" type="String">
+      <default>default</default>
+    </entry>
+    <entry name="customThemePreset" type="String">
+      <default>default</default>
+    </entry>
+    <entry name="customThemeMode" type="String">
+      <default>dark</default>
+    </entry>
+    <entry name="customTransparentBackground" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="customBackgroundOpacity" type="Double">
+      <default>0.6</default>
+    </entry>
+    <entry name="customGlassEffect" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="customGlassIntensity" type="Double">
+      <default>0.55</default>
+    </entry>
+    <entry name="customGlassTone" type="Double">
+      <default>0.35</default>
+    </entry>
+    <entry name="customTextContrast" type="String">
+      <default>auto</default>
+    </entry>
+    <entry name="savedPresetsJson" type="String">
+      <default>[]</default>
+    </entry>
+    <entry name="activeSavedPresetName" type="String">
+      <default></default>
+    </entry>
+    <entry name="transparentBackground" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="backgroundOpacity" type="Double">
+      <default>1.0</default>
+    </entry>
+    <entry name="glassEffect" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="glassIntensity" type="Double">
+      <default>0.55</default>
+    </entry>
+    <entry name="glassTone" type="Double">
+      <default>0.0</default>
+    </entry>
+    <entry name="textContrast" type="String">
+      <default>auto</default>
+    </entry>
+    <entry name="timeLocaleName" type="String">
+      <default>pt_BR</default>
+    </entry>
+  </group>
+</kcfg>
