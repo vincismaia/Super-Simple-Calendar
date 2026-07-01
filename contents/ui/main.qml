@@ -83,7 +83,7 @@ PlasmoidItem {
     readonly property color cardColor: withAlpha(toneColor(paletteCard()), surfaceOpacity)
     readonly property color overlayCardColor: withAlpha(toneColor(paletteCard()), Math.max(surfaceOpacity, glassEffect ? 0.72 : 0.88))
     readonly property color glassHighlight: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? (0.06 + Math.abs(glassTone) * 0.10 + glassIntensity * 0.05) : 0)
-    readonly property color cardBorder: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? (0.16 + glassIntensity * 0.14) : 0)
+    readonly property color cardBorder: "transparent"
     readonly property color effectiveCardBase: toneColor(paletteCard())
     readonly property color estimatedBackdrop: glassTone >= 0.15 ? colorFromHex("#eef2f8") : (darkTheme ? colorFromHex("#17191d") : colorFromHex("#f4f6fb"))
     readonly property color readableBackground: mixColor(estimatedBackdrop, effectiveCardBase, surfaceOpacity)
@@ -417,7 +417,7 @@ PlasmoidItem {
             radius: Kirigami.Units.gridUnit * 0.85 * fullView.contentScale
             color: root.cardColor
             border.color: root.cardBorder
-            border.width: root.glassEffect ? Math.max(1, fullView.contentScale) : 0
+            border.width: 0
         }
 
         Rectangle {
@@ -597,7 +597,7 @@ PlasmoidItem {
             radius: calendarCard.radius
             color: root.overlayCardColor
             border.color: root.cardBorder
-            border.width: root.glassEffect ? Math.max(1, fullView.contentScale) : 0
+            border.width: 0
             visible: root.monthPickerOpen
             z: 10
 
