@@ -37,39 +37,25 @@ PlasmoidItem {
     readonly property var savedPreset: selectedPreset === "saved" ? activeSavedPreset() : ({})
     readonly property bool savedPresetActive: selectedPreset === "saved" && savedPreset.name !== undefined
     readonly property bool customPresetActive: selectedPreset === "custom"
-    readonly property string requestedThemeMode: savedPresetActive
-        ? (savedPreset.themeMode || "dark")
-        : (customPresetActive ? (Plasmoid.configuration.customThemeMode || "dark") : (Plasmoid.configuration.themeMode || "auto"))
+    readonly property string requestedThemeMode: customPresetActive ? (Plasmoid.configuration.customThemeMode || "dark") : (Plasmoid.configuration.themeMode || "auto")
     readonly property string themePreset: savedPresetActive
         ? (savedPreset.themePreset || "default")
         : (customPresetActive ? (Plasmoid.configuration.customThemePreset || "default") : selectedPreset)
     readonly property string themeMode: themePreset !== "default" ? "dark" : requestedThemeMode
-    readonly property bool transparentBackground: savedPresetActive
-        ? !!savedPreset.transparentBackground
-        : (customPresetActive ? (Plasmoid.configuration.customTransparentBackground || false) : (Plasmoid.configuration.transparentBackground || false))
-    readonly property real backgroundOpacity: savedPresetActive
-        ? (savedPreset.backgroundOpacity === undefined ? 0.6 : savedPreset.backgroundOpacity)
-        : (customPresetActive
+    readonly property bool transparentBackground: customPresetActive ? (Plasmoid.configuration.customTransparentBackground || false) : (Plasmoid.configuration.transparentBackground || false)
+    readonly property real backgroundOpacity: customPresetActive
         ? (Plasmoid.configuration.customBackgroundOpacity === undefined ? 0.6 : Plasmoid.configuration.customBackgroundOpacity)
-        : (Plasmoid.configuration.backgroundOpacity === undefined ? 1.0 : Plasmoid.configuration.backgroundOpacity))
-    readonly property bool glassEffect: savedPresetActive
-        ? !!savedPreset.glassEffect
-        : (customPresetActive ? (Plasmoid.configuration.customGlassEffect || false) : (Plasmoid.configuration.glassEffect || false))
-    readonly property real glassIntensity: savedPresetActive
-        ? (savedPreset.glassIntensity === undefined ? 0.55 : savedPreset.glassIntensity)
-        : (customPresetActive
+        : (Plasmoid.configuration.backgroundOpacity === undefined ? 1.0 : Plasmoid.configuration.backgroundOpacity)
+    readonly property bool glassEffect: customPresetActive ? (Plasmoid.configuration.customGlassEffect || false) : (Plasmoid.configuration.glassEffect || false)
+    readonly property real glassIntensity: customPresetActive
         ? (Plasmoid.configuration.customGlassIntensity === undefined ? 0.55 : Plasmoid.configuration.customGlassIntensity)
-        : (Plasmoid.configuration.glassIntensity === undefined ? 0.55 : Plasmoid.configuration.glassIntensity))
-    readonly property real glassTone: savedPresetActive
-        ? (savedPreset.glassTone === undefined ? 0.0 : savedPreset.glassTone)
-        : (customPresetActive
+        : (Plasmoid.configuration.glassIntensity === undefined ? 0.55 : Plasmoid.configuration.glassIntensity)
+    readonly property real glassTone: customPresetActive
         ? (Plasmoid.configuration.customGlassTone === undefined ? 0.0 : Plasmoid.configuration.customGlassTone)
-        : (Plasmoid.configuration.glassTone === undefined ? 0.0 : Plasmoid.configuration.glassTone))
-    readonly property string textContrast: savedPresetActive
-        ? (savedPreset.textContrast || "auto")
-        : (customPresetActive
+        : (Plasmoid.configuration.glassTone === undefined ? 0.0 : Plasmoid.configuration.glassTone)
+    readonly property string textContrast: customPresetActive
         ? (Plasmoid.configuration.customTextContrast || "auto")
-        : (Plasmoid.configuration.textContrast || "auto"))
+        : (Plasmoid.configuration.textContrast || "auto")
     readonly property string timeLocaleName: Plasmoid.configuration.timeLocaleName || Qt.locale().name
     readonly property var calendarLocale: timeLocaleName.length > 0 ? Qt.locale(timeLocaleName) : Qt.locale()
     readonly property int firstDayOfWeek: localeFirstDay()
@@ -79,12 +65,12 @@ PlasmoidItem {
     readonly property bool darkTheme: themeMode === "dark" || (themeMode === "auto" && nightTime)
 
     readonly property real surfaceOpacity: glassEffect
-        ? Math.max(0.18, Math.min(0.82, backgroundOpacity * (0.92 - glassIntensity * 0.44)))
+        ? Math.max(0.0, Math.min(0.82, backgroundOpacity * (0.92 - glassIntensity * 0.44)))
         : (transparentBackground ? Math.max(0.0, Math.min(1.0, backgroundOpacity)) : 1.0)
     readonly property color cardColor: withAlpha(toneColor(paletteCard()), surfaceOpacity)
     readonly property color cardFill: cardColor
     readonly property color overlayCardColor: withAlpha(toneColor(paletteCard()), glassEffect ? Math.max(0.58, surfaceOpacity + 0.24) : Math.max(surfaceOpacity, 0.88))
-    readonly property color glassHighlight: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? (0.08 + Math.abs(glassTone) * 0.10 + glassIntensity * 0.07) : 0)
+    readonly property color glassHighlight: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? backgroundOpacity * (0.08 + Math.abs(glassTone) * 0.10 + glassIntensity * 0.07) : 0)
     readonly property color cardBorder: "transparent"
     readonly property color effectiveCardBase: toneColor(paletteCard())
     readonly property color estimatedBackdrop: darkTheme ? colorFromHex("#15171b") : colorFromHex("#eef2f8")
