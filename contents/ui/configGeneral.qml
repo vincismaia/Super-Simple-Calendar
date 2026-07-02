@@ -15,6 +15,7 @@ Kirigami.FormLayout {
     property alias cfg_glassIntensity: glassIntensity.value
     property alias cfg_glassTone: glassTone.value
     property alias cfg_textContrast: textContrast.currentValue
+    property alias cfg_timeLocaleName: timeLocale.currentValue
     property string cfg_savedPresetsJson: "[]"
     property string cfg_activeSavedPresetName: ""
     property string cfg_customThemePreset: "default"
@@ -25,7 +26,6 @@ Kirigami.FormLayout {
     property real cfg_customGlassIntensity: 0.55
     property real cfg_customGlassTone: 0.35
     property string cfg_customTextContrast: "auto"
-    property string cfg_timeLocaleName: "pt_BR"
     property string cfg_themeModeDefault: "auto"
     property string cfg_themePresetDefault: "default"
     property string cfg_customThemePresetDefault: "default"
@@ -44,7 +44,7 @@ Kirigami.FormLayout {
     property string cfg_textContrastDefault: "auto"
     property string cfg_savedPresetsJsonDefault: "[]"
     property string cfg_activeSavedPresetNameDefault: ""
-    property string cfg_timeLocaleNameDefault: "pt_BR"
+    property string cfg_timeLocaleNameDefault: ""
     property string title: i18n("Appearance")
     property var savedPresetModel: buildSavedPresetModel()
 
@@ -412,6 +412,24 @@ Kirigami.FormLayout {
             { text: i18n("Automatic"), value: "auto" },
             { text: i18n("High"), value: "high" },
             { text: i18n("Soft"), value: "soft" }
+        ]
+    }
+
+    Controls.ComboBox {
+        id: timeLocale
+        Kirigami.FormData.label: i18n("Calendar locale:")
+        textRole: "text"
+        valueRole: "value"
+        model: [
+            { text: i18n("System default"), value: "" },
+            { text: i18n("Portuguese (Brazil)"), value: "pt_BR" },
+            { text: i18n("English (United States)"), value: "en_US" },
+            { text: i18n("English (United Kingdom)"), value: "en_GB" },
+            { text: i18n("Spanish"), value: "es_ES" },
+            { text: i18n("French"), value: "fr_FR" },
+            { text: i18n("German"), value: "de_DE" },
+            { text: i18n("Italian"), value: "it_IT" },
+            { text: i18n("Japanese"), value: "ja_JP" }
         ]
     }
 }

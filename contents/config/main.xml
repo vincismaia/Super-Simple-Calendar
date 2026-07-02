@@ -60,7 +60,7 @@
       <default>auto</default>
     </entry>
     <entry name="timeLocaleName" type="String">
-      <default>pt_BR</default>
+      <default></default>
     </entry>
   </group>
 </kcfg>

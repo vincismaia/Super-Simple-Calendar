@@ -56,7 +56,7 @@ PlasmoidItem {
     readonly property string textContrast: customPresetActive
         ? (Plasmoid.configuration.customTextContrast || "auto")
         : (Plasmoid.configuration.textContrast || "auto")
-    readonly property string timeLocaleName: Plasmoid.configuration.timeLocaleName || Qt.locale().name
+    readonly property string timeLocaleName: Plasmoid.configuration.timeLocaleName || ""
     readonly property var calendarLocale: timeLocaleName.length > 0 ? Qt.locale(timeLocaleName) : Qt.locale()
     readonly property int firstDayOfWeek: localeFirstDay()
     readonly property int currentHour: today.getHours()
@@ -345,18 +345,10 @@ PlasmoidItem {
     }
 
     function localeFirstDay() {
-        if (timeLocaleName === "pt_BR") {
-            return 0
-        }
-
         return calendarLocale.firstDayOfWeek >= 7 ? 0 : calendarLocale.firstDayOfWeek
     }
 
     function weekDayInitial(day) {
-        if (timeLocaleName === "pt_BR") {
-            return ["D", "S", "T", "Q", "Q", "S", "S"][day]
-        }
-
         var name = calendarLocale.dayName(day)
         if (name.length === 0 && day === 0) {
             name = calendarLocale.dayName(7)
