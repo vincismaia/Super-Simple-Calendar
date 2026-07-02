@@ -245,6 +245,12 @@ Kirigami.FormLayout {
             { text: i18n("Nord"), value: "nord" },
             { text: i18n("Gruvbox"), value: "gruvbox" },
             { text: i18n("Solarized"), value: "solarized" },
+            { text: i18n("Catppuccin"), value: "catppuccin" },
+            { text: i18n("Tokyo Night"), value: "tokyonight" },
+            { text: i18n("Everforest"), value: "everforest" },
+            { text: i18n("One Dark"), value: "onedark" },
+            { text: i18n("Rose Pine"), value: "rosepine" },
+            { text: i18n("Material Ocean"), value: "materialocean" },
             { text: i18n("Saved preset"), value: "saved" }
         ]
         onActivated: {

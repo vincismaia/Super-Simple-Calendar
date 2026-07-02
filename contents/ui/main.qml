@@ -195,6 +195,18 @@ PlasmoidItem {
             return colorFromHex(darkTheme ? "#282828" : "#fbf1c7")
         } else if (themePreset === "solarized") {
             return colorFromHex(darkTheme ? "#002b36" : "#fdf6e3")
+        } else if (themePreset === "catppuccin") {
+            return colorFromHex("#1e1e2e")
+        } else if (themePreset === "tokyonight") {
+            return colorFromHex("#1a1b26")
+        } else if (themePreset === "everforest") {
+            return colorFromHex("#2d353b")
+        } else if (themePreset === "onedark") {
+            return colorFromHex("#282c34")
+        } else if (themePreset === "rosepine") {
+            return colorFromHex("#191724")
+        } else if (themePreset === "materialocean") {
+            return colorFromHex("#0f111a")
         }
 
         return colorFromHex(darkTheme ? "#202124" : "#f9fafc")
@@ -209,6 +221,18 @@ PlasmoidItem {
             return colorFromHex(darkTheme ? "#ebdbb2" : "#3c3836")
         } else if (themePreset === "solarized") {
             return colorFromHex(darkTheme ? "#eee8d5" : "#073642")
+        } else if (themePreset === "catppuccin") {
+            return colorFromHex("#cdd6f4")
+        } else if (themePreset === "tokyonight") {
+            return colorFromHex("#c0caf5")
+        } else if (themePreset === "everforest") {
+            return colorFromHex("#d3c6aa")
+        } else if (themePreset === "onedark") {
+            return colorFromHex("#abb2bf")
+        } else if (themePreset === "rosepine") {
+            return colorFromHex("#e0def4")
+        } else if (themePreset === "materialocean") {
+            return colorFromHex("#c3e88d")
         }
 
         return colorFromHex(darkTheme ? "#f4f4f5" : "#20242c")
@@ -253,6 +277,18 @@ PlasmoidItem {
             return colorFromHex(darkTheme ? "#928374" : "#928374")
         } else if (themePreset === "solarized") {
             return colorFromHex(darkTheme ? "#839496" : "#93a1a1")
+        } else if (themePreset === "catppuccin") {
+            return colorFromHex("#7f849c")
+        } else if (themePreset === "tokyonight") {
+            return colorFromHex("#565f89")
+        } else if (themePreset === "everforest") {
+            return colorFromHex("#859289")
+        } else if (themePreset === "onedark") {
+            return colorFromHex("#5c6370")
+        } else if (themePreset === "rosepine") {
+            return colorFromHex("#908caa")
+        } else if (themePreset === "materialocean") {
+            return colorFromHex("#546e7a")
         }
 
         return colorFromHex(darkTheme ? "#737780" : "#9aa1ad")
@@ -279,6 +315,18 @@ PlasmoidItem {
             return colorFromHex(darkTheme ? "#fb4934" : "#cc241d")
         } else if (themePreset === "solarized") {
             return colorFromHex("#dc322f")
+        } else if (themePreset === "catppuccin") {
+            return colorFromHex("#f38ba8")
+        } else if (themePreset === "tokyonight") {
+            return colorFromHex("#f7768e")
+        } else if (themePreset === "everforest") {
+            return colorFromHex("#e67e80")
+        } else if (themePreset === "onedark") {
+            return colorFromHex("#e06c75")
+        } else if (themePreset === "rosepine") {
+            return colorFromHex("#eb6f92")
+        } else if (themePreset === "materialocean") {
+            return colorFromHex("#ff5370")
         }
 
         return colorFromHex(darkTheme ? "#f04f58" : "#d73e48")
@@ -293,6 +341,18 @@ PlasmoidItem {
             return colorFromHex(darkTheme ? "#3c3836" : "#ebdbb2")
         } else if (themePreset === "solarized") {
             return colorFromHex(darkTheme ? "#073642" : "#eee8d5")
+        } else if (themePreset === "catppuccin") {
+            return colorFromHex("#313244")
+        } else if (themePreset === "tokyonight") {
+            return colorFromHex("#24283b")
+        } else if (themePreset === "everforest") {
+            return colorFromHex("#343f44")
+        } else if (themePreset === "onedark") {
+            return colorFromHex("#353b45")
+        } else if (themePreset === "rosepine") {
+            return colorFromHex("#26233a")
+        } else if (themePreset === "materialocean") {
+            return colorFromHex("#1f2233")
         }
 
         return colorFromHex(darkTheme ? "#2d2f34" : "#eceff4")
