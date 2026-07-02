@@ -353,7 +353,7 @@ Kirigami.FormLayout {
         Controls.Slider {
             id: backgroundOpacity
             Layout.fillWidth: true
-            from: 0.05
+            from: 0.0
             to: 1.0
             stepSize: 0.05
         }

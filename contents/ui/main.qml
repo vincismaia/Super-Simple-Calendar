@@ -80,7 +80,7 @@ PlasmoidItem {
 
     readonly property real surfaceOpacity: glassEffect
         ? Math.max(0.18, Math.min(0.82, backgroundOpacity * (0.92 - glassIntensity * 0.44)))
-        : (transparentBackground ? Math.max(0.05, Math.min(1.0, backgroundOpacity)) : 1.0)
+        : (transparentBackground ? Math.max(0.0, Math.min(1.0, backgroundOpacity)) : 1.0)
     readonly property color cardColor: withAlpha(toneColor(paletteCard()), surfaceOpacity)
     readonly property color cardFill: cardColor
     readonly property color overlayCardColor: withAlpha(toneColor(paletteCard()), glassEffect ? Math.max(0.58, surfaceOpacity + 0.24) : Math.max(surfaceOpacity, 0.88))
