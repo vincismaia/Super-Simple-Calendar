@@ -429,7 +429,18 @@ Kirigami.FormLayout {
             { text: i18n("French"), value: "fr_FR" },
             { text: i18n("German"), value: "de_DE" },
             { text: i18n("Italian"), value: "it_IT" },
-            { text: i18n("Japanese"), value: "ja_JP" }
+            { text: i18n("Dutch"), value: "nl_NL" },
+            { text: i18n("Polish"), value: "pl_PL" },
+            { text: i18n("Russian"), value: "ru_RU" },
+            { text: i18n("Turkish"), value: "tr_TR" },
+            { text: i18n("Chinese (Simplified)"), value: "zh_CN" },
+            { text: i18n("Chinese (Traditional)"), value: "zh_TW" },
+            { text: i18n("Japanese"), value: "ja_JP" },
+            { text: i18n("Korean"), value: "ko_KR" },
+            { text: i18n("Arabic"), value: "ar_SA" },
+            { text: i18n("Hindi"), value: "hi_IN" },
+            { text: i18n("Indonesian"), value: "id_ID" },
+            { text: i18n("Vietnamese"), value: "vi_VN" }
         ]
     }
 }

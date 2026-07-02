@@ -8,7 +8,7 @@
       }
     ],
     "Category": "Date and Time",
-    "Description": "Mini calendar with rounded corners and light, dark, or automatic theme.",
+    "Description": "Customizable mini calendar with glass styling, theme presets, and locale-aware formatting.",
     "Icon": "view-calendar",
     "Id": "com.vinicius.minicalendar",
     "License": "MIT",
