@@ -72,6 +72,44 @@ Kirigami.FormLayout {
         return value !== "default" && value !== "saved" && value !== "custom"
     }
 
+    function appearancePreset(value) {
+        if (value === "dracula") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.70, glassEffect: true, glassIntensity: 0.55, glassTone: -0.20, textContrast: "auto" }
+        } else if (value === "nord") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.76, glassEffect: true, glassIntensity: 0.40, glassTone: 0.15, textContrast: "auto" }
+        } else if (value === "gruvbox") {
+            return { themeMode: "dark", transparentBackground: false, backgroundOpacity: 0.92, glassEffect: false, glassIntensity: 0.20, glassTone: -0.15, textContrast: "soft" }
+        } else if (value === "solarized") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.78, glassEffect: true, glassIntensity: 0.35, glassTone: 0.05, textContrast: "auto" }
+        } else if (value === "catppuccin") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.72, glassEffect: true, glassIntensity: 0.62, glassTone: 0.10, textContrast: "auto" }
+        } else if (value === "tokyonight") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.68, glassEffect: true, glassIntensity: 0.72, glassTone: -0.10, textContrast: "high" }
+        } else if (value === "everforest") {
+            return { themeMode: "dark", transparentBackground: false, backgroundOpacity: 0.88, glassEffect: false, glassIntensity: 0.25, glassTone: -0.05, textContrast: "soft" }
+        } else if (value === "onedark") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.82, glassEffect: true, glassIntensity: 0.38, glassTone: -0.20, textContrast: "auto" }
+        } else if (value === "rosepine") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.74, glassEffect: true, glassIntensity: 0.58, glassTone: 0.20, textContrast: "auto" }
+        } else if (value === "materialocean") {
+            return { themeMode: "dark", transparentBackground: true, backgroundOpacity: 0.66, glassEffect: true, glassIntensity: 0.70, glassTone: -0.30, textContrast: "high" }
+        }
+
+        return { themeMode: "auto", transparentBackground: false, backgroundOpacity: 1.0, glassEffect: false, glassIntensity: 0.55, glassTone: 0.0, textContrast: "auto" }
+    }
+
+    function applyAppearancePreset(value) {
+        var preset = appearancePreset(value)
+
+        selectThemeMode(preset.themeMode)
+        transparentBackground.checked = preset.transparentBackground
+        backgroundOpacity.value = preset.backgroundOpacity
+        glassEffect.checked = preset.glassEffect
+        glassIntensity.value = preset.glassIntensity
+        glassTone.value = preset.glassTone
+        selectTextContrast(preset.textContrast)
+    }
+
     function savedPresets() {
         try {
             var parsed = JSON.parse(cfg_savedPresetsJson || "[]")
@@ -254,10 +292,10 @@ Kirigami.FormLayout {
             { text: i18n("Saved preset"), value: "saved" }
         ]
         onActivated: {
-            if (page.builtInPreset(currentValue)) {
-                page.selectThemeMode("dark")
-            } else if (currentValue === "saved") {
+            if (currentValue === "saved") {
                 page.loadSavedPreset(page.activeSavedPreset())
+            } else {
+                page.applyAppearancePreset(currentValue)
             }
         }
     }
