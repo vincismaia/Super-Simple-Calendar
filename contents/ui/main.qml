@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls as Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
@@ -78,14 +79,15 @@ PlasmoidItem {
     readonly property bool darkTheme: themeMode === "dark" || (themeMode === "auto" && nightTime)
 
     readonly property real surfaceOpacity: glassEffect
-        ? Math.max(0.25, Math.min(0.9, 0.78 - glassIntensity * 0.38))
-        : (transparentBackground ? Math.max(0.2, Math.min(1.0, backgroundOpacity)) : 1.0)
+        ? Math.max(0.18, Math.min(0.82, backgroundOpacity * (0.92 - glassIntensity * 0.44)))
+        : (transparentBackground ? Math.max(0.05, Math.min(1.0, backgroundOpacity)) : 1.0)
     readonly property color cardColor: withAlpha(toneColor(paletteCard()), surfaceOpacity)
-    readonly property color overlayCardColor: withAlpha(toneColor(paletteCard()), Math.max(surfaceOpacity, glassEffect ? 0.72 : 0.88))
-    readonly property color glassHighlight: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? (0.06 + Math.abs(glassTone) * 0.10 + glassIntensity * 0.05) : 0)
+    readonly property color cardFill: cardColor
+    readonly property color overlayCardColor: withAlpha(toneColor(paletteCard()), glassEffect ? Math.max(0.58, surfaceOpacity + 0.24) : Math.max(surfaceOpacity, 0.88))
+    readonly property color glassHighlight: withAlpha(colorFromHex(glassTone >= 0 ? "#ffffff" : "#000000"), glassEffect ? (0.08 + Math.abs(glassTone) * 0.10 + glassIntensity * 0.07) : 0)
     readonly property color cardBorder: "transparent"
     readonly property color effectiveCardBase: toneColor(paletteCard())
-    readonly property color estimatedBackdrop: glassTone >= 0.15 ? colorFromHex("#eef2f8") : (darkTheme ? colorFromHex("#17191d") : colorFromHex("#f4f6fb"))
+    readonly property color estimatedBackdrop: darkTheme ? colorFromHex("#15171b") : colorFromHex("#eef2f8")
     readonly property color readableBackground: mixColor(estimatedBackdrop, effectiveCardBase, surfaceOpacity)
     readonly property real readableBackgroundLuminance: luminance(readableBackground)
     readonly property color primaryText: adaptivePrimaryText()
@@ -109,6 +111,23 @@ PlasmoidItem {
 
     function withAlpha(colorValue, alpha) {
         return Qt.rgba(colorValue.r, colorValue.g, colorValue.b, alpha)
+    }
+
+    function wallpaperItem() {
+        var item = root.parent
+
+        while (item) {
+            try {
+                if (item.layout && item.layout.containmentItem && item.layout.containmentItem.wallpaper) {
+                    return item.layout.containmentItem.wallpaper
+                }
+            } catch (error) {
+            }
+
+            item = item.parent
+        }
+
+        return null
     }
 
     function savedPresets() {
@@ -411,11 +430,54 @@ PlasmoidItem {
         Layout.maximumWidth: root.calendarMaxWidth
         Layout.maximumHeight: root.calendarMaxHeight
 
+        ShaderEffectSource {
+            id: desktopSource
+
+            readonly property var sceneItem: root.wallpaperItem()
+
+            width: fullView.width
+            height: fullView.height
+            live: root.glassEffect
+            recursive: false
+            visible: false
+            sourceItem: sceneItem
+            sourceRect: {
+                if (!sceneItem) {
+                    return Qt.rect(0, 0, width, height)
+                }
+
+                var position = fullView.mapToItem(sceneItem, 0, 0)
+                return Qt.rect(position.x, position.y, fullView.width, fullView.height)
+            }
+        }
+
+        Item {
+            id: glassBlurLayer
+
+            anchors.fill: parent
+            visible: root.glassEffect && desktopSource.sceneItem
+            layer.enabled: visible
+            layer.effect: OpacityMask {
+                maskSource: Rectangle {
+                    width: glassBlurLayer.width
+                    height: glassBlurLayer.height
+                    radius: Kirigami.Units.gridUnit * 0.85 * fullView.contentScale
+                }
+            }
+
+            FastBlur {
+                anchors.fill: parent
+                source: desktopSource
+                radius: Math.max(8, 42 * root.glassIntensity)
+                transparentBorder: true
+            }
+        }
+
         Rectangle {
             id: calendarCard
             anchors.fill: parent
             radius: Kirigami.Units.gridUnit * 0.85 * fullView.contentScale
-            color: root.cardColor
+            color: root.cardFill
             border.color: root.cardBorder
             border.width: 0
         }
